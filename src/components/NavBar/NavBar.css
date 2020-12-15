@@ -10,7 +10,7 @@
 .navbar {
   /* display: inline-block; */
   height: 100%;
-  position: sticky;
+  /* position: sticky; */
   z-index: 1;
   margin-top: 20px;
 }
