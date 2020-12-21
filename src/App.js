@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TitleBar from "./components/TitleBar/TitleBar";
 import MainContent from "./components/MainContent/MainContent";
+import NavBar from "./components/NavBar/NavBar";
+import SearchResultsComponent from "./components/SearchResultsComponent/SearchResultsComponent";
 
 import { companies } from "./content.js";
 
@@ -11,8 +13,26 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(companies);
   const [option, setOption] = useState("All");
+  const [searchResultsOfSearch, setSearchResultsOfSearch] = useState([]);
+  const [showContent, setshowContent] = useState(true);
+
+  const changeShowContent = () => {
+    setshowContent(!showContent);
+  };
+
+  const setSearchResultsOfSearchFunction = (e) => {
+    console.log("search", e);
+    setSearchResultsOfSearch(e);
+  };
+
+  const setSearchFunction = (e) => {
+    setSearch("");
+    console.log("search", search);
+  };
 
   const searchChange = (event) => {
+    // console.log(event.target.value);
+    // event.target.value = event.target.value.toLowerCase();
     console.log(event.target.value);
     setSearch(event.target.value);
   };
@@ -23,19 +43,34 @@ const App = () => {
     console.log(event.target.value);
   };
 
-  useEffect(() => {
-    console.log(companies);
-  }, []);
+  // useEffect(() => {
+  //   // console.log(companies);
+  // }, []);
 
-  const filteredResults = searchResults.filter((company) => {
-    return company.name.toLowerCase().includes(search.toLowerCase());
-  });
+  // const filteredResults = searchResults.filter((company) => {
+  //   console.log("company", company);
+  //   return company.name.toLowerCase().includes(search.toLowerCase());
+  // });
 
   return (
     <div className="page-wrapper">
-      <TitleBar searchChange={searchChange} changeOption={changeOption} />
-      <MainContent filteredRes={filteredResults} />
-      {/* ROUTE THE PAGES HERE WITH ROUTER and in Pages import each component for that page */}
+      <TitleBar
+        searchChange={searchChange}
+        changeOption={changeOption}
+        setSearch={setSearchFunction}
+        // filteredRes={filteredResults}
+        search={search}
+        changeShowContent={changeShowContent}
+        sendFilteredResultsUp={setSearchResultsOfSearchFunction}
+      />
+      <div className="main-content-area">
+        <NavBar />
+        {showContent ? (
+          <MainContent companies={companies} />
+        ) : (
+          <SearchResultsComponent filteredRes={searchResultsOfSearch} />
+        )}
+      </div>
     </div>
   );
 };

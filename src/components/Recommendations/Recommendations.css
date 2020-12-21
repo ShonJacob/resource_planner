@@ -1,0 +1,65 @@
+.recommendationResults {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* display: none; */
+}
+
+.setbackground {
+  background-color: #4358f2 !important;
+}
+
+.recommendedRes {
+  font-size: 15px;
+  margin: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.categoryButtons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.categoryButtons button {
+  width: 30%;
+  border-style: none;
+  margin: 0 20px 0 20px;
+  border-radius: 50px;
+  font-size: 15px;
+  padding: 8px;
+  background-color: grey;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+/* .categoryButtons button:focus {
+  outline: none;
+} */
+
+.activeCategory {
+  background-color: blue;
+}
+
+.viewMoreButton {
+  align-self: flex-start;
+  margin-left: 40px;
+  border-style: none;
+  background-color: white;
+  color: blue;
+  margin-top: 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* .viewMoreButton button:focus {
+  outline: none;
+} */

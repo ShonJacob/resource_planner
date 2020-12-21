@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
-import NavBar from "../../components/NavBar/NavBar";
 import { useTable } from "react-table";
-import "./MainContent.css";
-import { columns } from "../../content";
-import SlidingButton from "../sildingButton/SlidingButton";
+import "./SearchResultsComponent.css";
+import { columns } from "../../searchContent";
+// import SlidingButton from "../sildingButton/SlidingButton";
 
-const MainContent = (props) => {
-  const data = props.companies;
+const SearchResultsComponent = (props) => {
+  const data = props.filteredRes;
   console.log("data", data);
   const {
     getTableProps,
@@ -21,10 +20,6 @@ const MainContent = (props) => {
 
   return (
     <div className="wrapper">
-      <div className="addCompany">
-        <p>All Companies</p>
-        <button>Add new company</button>
-      </div>
       <div className="main-section">
         <div className="result-table">
           <table {...getTableProps()}>
@@ -51,15 +46,7 @@ const MainContent = (props) => {
                       }
                       return (
                         <td {...cell.getCellProps()} className="table-row">
-                          {(() => {
-                            if (j === 3) {
-                              {
-                                return <SlidingButton />;
-                              }
-                            } else {
-                              return cell.render("Cell");
-                            }
-                          })()}
+                          {cell.render("Cell")}
                         </td>
                       );
                     })}
@@ -74,4 +61,4 @@ const MainContent = (props) => {
   );
 };
 
-export default MainContent;
+export default SearchResultsComponent;
